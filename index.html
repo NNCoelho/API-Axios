@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - Axios</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    
+    <button onclick="executar()" >Executar</button>
+
+    <div id="dados"></div>
+    <img src="" id="avatar">
+
+    <script>
+
+        function executar(){
+                    
+            // Faz o pedido para um utilizador com um determinado ID
+            axios.get('https://reqres.in/api/users/1')
+            .then(function (response) {
+                // Sucesso
+                console.log(response);
+                document.getElementById('dados').innerText = response.data.data.first_name + ' ' + response.data.data.last_name;
+                document.getElementById('avatar').src = response.data.data.avatar;
+            })
+
+            .catch(function (error) {
+                // Erro
+                console.log(error);
+            })
+
+            .finally(function () {
+                // Sempre executado
+                console.log('Terminado');
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
